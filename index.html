@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Utilizing latent diffusion models for annotation-free object counting across diverse categories.">
+  <meta name="keywords" content="AFreeCa, Object Counting, Synthetic, Latent Diffusion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AFreeCa: Annotation-Free Counting for All</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <!-- <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div> 
+      </div>
+    </div> -->
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">AFreeCa: Annotation-Free Counting for All</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.ca/citations?user=FvPiYsEAAAAJ&hl=en">Adriano C. D'Alessandro</a>,</span>
+            <span class="author-block">
+              <a href="https://arash-mham.github.io/">Ali Mahdavi-Amiri</a>,</span>
+            <span class="author-block">
+              <a href="https://www.medicalimageanalysis.com/ghassans-bio">Ghassan Hamarneh</a>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Simon Fraser University</span>
+          </div>
+
+          <b><p class="is-size-5">ECCV 2024</p></b>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2403.04943"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/adrian-dalessandro/AFreeCA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <video id="teaser" autoplay muted playsinline loop height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <p class="subtitle has-text-centered">
+        <small><b>Figure 1. </b><span class="dnerf">AFreeCA</span> exploits data from latent diffusion models to count objects without annotations.</small>
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Object counting methods typically rely on manually annotated datasets. 
+            The cost of creating such datasets has restricted the versatility of these networks to count objects from specific classes (such as humans or penguins), and counting objects from diverse categories remains a challenge. 
+            The availability of robust text-to-image latent diffusion models (LDMs) raises the question of whether these models can be utilized to generate counting datasets. 
+            However, LDMs struggle to create images with an exact number of objects based solely on text prompts but they can be used to offer a dependable <i>sorting</i> signal by adding and removing objects within an image. 
+            Leveraging this data, we initially introduce an unsupervised sorting methodology to learn object-related features that are subsequently refined and anchored for counting purposes using counting data generated by LDMs. 
+            Further, we present a density classifier-guided method for dividing an image into patches containing objects that can be reliably counted. Consequently, we can generate counting data for any type of object and count them in an unsupervised manner. 
+            <span class="dnerf">AFreeCA</span>  outperforms other unsupervised and few-shot alternatives and is not restricted to specific object classes for which counting data is available.
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+    </section>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <section class="section">
+      <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+
+        <!-- Interpolating. -->
+        <h3 class="title is-4">The Challenge of Generating Counting Data with Latent Diffusion Models</h3>
+        <div class="content has-text-justified">
+          <p>Traditional object counting methods rely heavily on manually annotated datasets, which are costly and time-consuming to create. 
+            Text-to-image latent diffusion models (LDMs) like Stable Diffusion offer a promising alternative by generating synthetic images 
+            from text prompts, potentially reducing the need for manual annotations. However, these models struggle to produce images with an
+             exact number of objects as specified, leading to inconsistencies between the intended and actual counts. Figure 2 illustrates 
+             this issue: when a prompt specifies a certain object count (e.g., 20), Stable Diffusion often generates images with a similar but
+              incorrect number of objects. Moreover, as the prompt count increases, the relative error between the true count and the prompt 
+              count also increases, indicating that synthetic data becomes less reliable for higher object counts. This highlights the 
+              challenge of using synthetic data from LDMs for accurate object counting.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-centered has-text-centered">
+      <img src="./static/images/noisy_count_lr.png"
+           alt="Interpolation end reference image."/>
+           <p class="subtitle has-text-left">
+           <small><b>Figure 2. </b> <i>Left</i>: when given a prompt count of 20, Stable Diffusion outputs images with
+           a similar but often incorrect object count. <i>Right</i>: as the prompt count increases, the
+           relative error between the true underlying count and the prompt count increases</small>
+           </p>
+    </div>
+
+
+    <!--/ Paper video. -->
+  </div>
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-4">Methodology</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Our proposed methodology leverages synthetic data generated by latent diffusion models (LDMs) to improve object counting across diverse categories. 
+            We first generate highly reliable synthetic sorting data by adding and removing objects in images, creating ordered image triplets based on object count. 
+            These triplets are used to train a sorting network that captures robust counting features. Subsequently, we use LDMs to generate noisy synthetic counting data to
+            fine-tune the counting network, anchoring the learned sorting features to actual count values. To enhance accuracy in dense images, we employ a density classifier 
+            that partitions images into manageable patches. Figure 3 illustrates our workflow: starting with simple prompts to create synthetic training data, we train a sorting 
+            model, a density classifier, and a count anchoring network. During inference, the density classifier guides the partitioning of dense images, allowing for precise 
+            counting even in regions with high object density. This approach ensures accurate counting across varied object categories without the need for manual annotations.
+          </p>
+        </div>
+
+      <div class="column is-centered has-text-centered">
+        <img src="./static/images/methodology.png"
+             alt="methodology for AFreeCA"  style="max-width:85%"/>
+             <p class="subtitle has-text-left">
+             <small><b>Figure 3. </b> Our strategy involves three distinct steps supported by a synthetic training signal extracted from stable diffusion.</small>
+             </p>
+    </div>
+
+    <!-- <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-4">Concurrent Works</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            There's a lot of excellent work that was introduced around the same time as ours.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
+          </p>
+          <p>
+            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
+            both use deformation fields to model non-rigid scenes.
+          </p>
+          <p>
+            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
+          </p>
+          <p>
+            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
+          </p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  </section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{dalessandro2024afreeca,
+  author    = {D'Alessandro, Adriano C. and Mahdavi-Amiri, Ali and Hamarneh, Ghassan},
+  title     = {AFreeCa: Annotation-Free Counting for All},
+  journal   = {ECCV},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/adrian-dalessandro" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
