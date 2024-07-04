@@ -130,9 +130,9 @@
         <source src="./static/videos/teaser.mp4"
                 type="video/mp4">
       </video>
-      <p class="subtitle has-text-centered">
+      <!-- <p class="subtitle has-text-centered">
         <small><b>Figure 1. </b><span class="dnerf">AFreeCA</span> exploits data from latent diffusion models to count objects without annotations.</small>
-      </p>
+      </p> -->
     </div>
   </div>
 </section>
@@ -231,7 +231,7 @@
           <p>Traditional object counting methods rely heavily on manually annotated datasets, which are costly and time-consuming to create. 
             Text-to-image latent diffusion models (LDMs) like Stable Diffusion offer a promising alternative by generating synthetic images 
             from text prompts, potentially reducing the need for manual annotations. However, these models struggle to produce images with an
-             exact number of objects as specified, leading to inconsistencies between the intended and actual counts. Figure 2 illustrates 
+             exact number of objects as specified, leading to inconsistencies between the intended and actual counts. Figure 1 illustrates 
              this issue: when a prompt specifies a certain object count (e.g., 20), Stable Diffusion often generates images with a similar but
               incorrect number of objects. Moreover, as the prompt count increases, the relative error between the true count and the prompt 
               count also increases, indicating that synthetic data becomes less reliable for higher object counts. This highlights the 
@@ -244,7 +244,7 @@
       <img src="./static/images/noisy_count_lr.png"
            alt="Interpolation end reference image."/>
            <p class="subtitle has-text-left">
-           <small><b>Figure 2. </b> <i>Left</i>: when given a prompt count of 20, Stable Diffusion outputs images with
+           <small><b>Figure 1. </b> <i>Left</i>: when given a prompt count of 20, Stable Diffusion outputs images with
            a similar but often incorrect object count. <i>Right</i>: as the prompt count increases, the
            relative error between the true underlying count and the prompt count increases</small>
            </p>
@@ -267,7 +267,7 @@
             We first generate highly reliable synthetic sorting data by adding and removing objects in images, creating ordered image triplets based on object count. 
             These triplets are used to train a sorting network that captures robust counting features. Subsequently, we use LDMs to generate noisy synthetic counting data to
             fine-tune the counting network, anchoring the learned sorting features to actual count values. To enhance accuracy in dense images, we employ a density classifier 
-            that partitions images into manageable patches. Figure 3 illustrates our workflow: starting with simple prompts to create synthetic training data, we train a sorting 
+            that partitions images into manageable patches. Figure 2 illustrates our workflow: starting with simple prompts to create synthetic training data, we train a sorting 
             model, a density classifier, and a count anchoring network. During inference, the density classifier guides the partitioning of dense images, allowing for precise 
             counting even in regions with high object density. This approach ensures accurate counting across varied object categories without the need for manual annotations.
           </p>
@@ -277,7 +277,7 @@
         <img src="./static/images/methodology.png"
              alt="methodology for AFreeCA" />
              <p class="subtitle has-text-left">
-             <small><b>Figure 3. </b> Our strategy involves three distinct steps supported by a synthetic training signal extracted from stable diffusion.</small>
+             <small><b>Figure 2. </b> Our strategy involves three distinct steps supported by a synthetic training signal extracted from stable diffusion.</small>
              </p>
     </div>
 
